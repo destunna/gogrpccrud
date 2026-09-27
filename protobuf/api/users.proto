@@ -1,0 +1,69 @@
+syntax = "proto3";
+
+package github.destunna.gogrpccrud.protobuf.api.service;
+
+message CreateUserRequest {
+  string full_name = 2;
+  string age = 3;
+  string phone_number = 4;
+  string habits = 5;      
+  bool alive = 6;
+}
+
+message CreateUserResponse {
+  string id = 1;
+  string full_name = 2;
+  string age = 3;
+  string phone_number = 4;
+  string habits = 5;
+  bool alive = 6;
+  string created_at = 7;
+}
+
+message UpdateUserRequest {
+  string id = 1;
+  string full_name = 2;
+  string age = 3;
+  string phone_number = 4;
+  string habits = 5;      
+  bool alive = 6;
+}
+
+message UpdateUserResponse {
+  string id = 1;
+  string full_name = 2;
+  string age = 3;
+  string phone_number = 4;
+  string habits = 5;
+  bool alive = 6;
+  string created_at = 7;
+}
+
+message GetUserRequest {
+  string id = 1;
+}
+
+message GetUserResponse {
+  string id = 1;
+  string full_name = 2;
+  string age = 3;
+  string phone_number = 4;
+  string habits = 5;
+  bool alive = 6;
+  string created_at = 7;
+}
+
+message GetAllUsersRequest {
+  int32 page = 1;
+  int32 limit = 2;
+}
+
+message GetAllUsersResponse {
+  repeated GetUserResponse users = 1; 
+}
+
+message DeleteUserRequest {
+  string id = 1;
+}
+
+message DeleteUserResponse {}
