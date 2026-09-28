@@ -7,6 +7,7 @@ import (
 
 	"time"
 
+	"buf.build/go/protovalidate"
 	"google.golang.org/grpc/codes"
 	"google.golang.org/grpc/status"
 )
@@ -23,6 +24,10 @@ func NewUserServise(db *sql.DB) *UserServise {
 }
 
 func (s *UserServise) CreateUser(ctx context.Context, req *api.CreateUserRequest) (*api.CreateUserResponse, error) {
+	if err := protovalidate.Validate(req); err != nil {
+		return nil, status.Errorf(codes.InvalidArgument, "validation failed: %v", err)
+	}
+
 	var id string
 
 	err := s.db.QueryRowContext(ctx, `

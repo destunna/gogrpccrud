@@ -7,6 +7,7 @@
 package api
 
 import (
+	_ "buf.build/gen/go/bufbuild/protovalidate/protocolbuffers/go/buf/validate"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
 	reflect "reflect"
@@ -681,11 +682,11 @@ var File_api_users_proto protoreflect.FileDescriptor
 
 const file_api_users_proto_rawDesc = "" +
 	"\n" +
-	"\x0fapi/users.proto\x12/github.destunna.gogrpccrud.protobuf.api.service\"\x93\x01\n" +
-	"\x11CreateUserRequest\x12\x1b\n" +
-	"\tfull_name\x18\x02 \x01(\tR\bfullName\x12\x10\n" +
-	"\x03age\x18\x03 \x01(\tR\x03age\x12!\n" +
-	"\fphone_number\x18\x04 \x01(\tR\vphoneNumber\x12\x16\n" +
+	"\x0fapi/users.proto\x12/github.destunna.gogrpccrud.protobuf.api.service\x1a\x1bbuf/validate/validate.proto\"\xc8\x01\n" +
+	"\x11CreateUserRequest\x12&\n" +
+	"\tfull_name\x18\x02 \x01(\tB\t\xbaH\x06r\x04\x10\x03\x18dR\bfullName\x12%\n" +
+	"\x03age\x18\x03 \x01(\tB\x13\xbaH\x10r\x0e\x10\x01\x18\x032\b^[0-9]+$R\x03age\x126\n" +
+	"\fphone_number\x18\x04 \x01(\tB\x13\xbaH\x10r\x0e\x10\a\x18\x142\b^[0-9]+$R\vphoneNumber\x12\x16\n" +
 	"\x06habits\x18\x05 \x01(\tR\x06habits\x12\x14\n" +
 	"\x05alive\x18\x06 \x01(\bR\x05alive\"\xc3\x01\n" +
 	"\x12CreateUserResponse\x12\x0e\n" +
@@ -696,12 +697,12 @@ const file_api_users_proto_rawDesc = "" +
 	"\x06habits\x18\x05 \x01(\tR\x06habits\x12\x14\n" +
 	"\x05alive\x18\x06 \x01(\bR\x05alive\x12\x1d\n" +
 	"\n" +
-	"created_at\x18\a \x01(\tR\tcreatedAt\"\xa3\x01\n" +
-	"\x11UpdateUserRequest\x12\x0e\n" +
-	"\x02id\x18\x01 \x01(\tR\x02id\x12\x1b\n" +
-	"\tfull_name\x18\x02 \x01(\tR\bfullName\x12\x10\n" +
-	"\x03age\x18\x03 \x01(\tR\x03age\x12!\n" +
-	"\fphone_number\x18\x04 \x01(\tR\vphoneNumber\x12\x16\n" +
+	"created_at\x18\a \x01(\tR\tcreatedAt\"\xee\x01\n" +
+	"\x11UpdateUserRequest\x12$\n" +
+	"\x02id\x18\x01 \x01(\tB\x14\xbaH\x11\xc8\x01\x01r\f\x10\x012\b^[0-9]+$R\x02id\x12&\n" +
+	"\tfull_name\x18\x02 \x01(\tB\t\xbaH\x06r\x04\x10\x03\x18dR\bfullName\x12%\n" +
+	"\x03age\x18\x03 \x01(\tB\x13\xbaH\x10r\x0e\x10\x01\x18\x032\b^[0-9]+$R\x03age\x126\n" +
+	"\fphone_number\x18\x04 \x01(\tB\x13\xbaH\x10r\x0e\x10\a\x18\x142\b^[0-9]+$R\vphoneNumber\x12\x16\n" +
 	"\x06habits\x18\x05 \x01(\tR\x06habits\x12\x14\n" +
 	"\x05alive\x18\x06 \x01(\bR\x05alive\"\xc3\x01\n" +
 	"\x12UpdateUserResponse\x12\x0e\n" +
@@ -712,9 +713,9 @@ const file_api_users_proto_rawDesc = "" +
 	"\x06habits\x18\x05 \x01(\tR\x06habits\x12\x14\n" +
 	"\x05alive\x18\x06 \x01(\bR\x05alive\x12\x1d\n" +
 	"\n" +
-	"created_at\x18\a \x01(\tR\tcreatedAt\" \n" +
-	"\x0eGetUserRequest\x12\x0e\n" +
-	"\x02id\x18\x01 \x01(\tR\x02id\"\xc0\x01\n" +
+	"created_at\x18\a \x01(\tR\tcreatedAt\"6\n" +
+	"\x0eGetUserRequest\x12$\n" +
+	"\x02id\x18\x01 \x01(\tB\x14\xbaH\x11\xc8\x01\x01r\f\x10\x012\b^[0-9]+$R\x02id\"\xc0\x01\n" +
 	"\x0fGetUserResponse\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\tR\x02id\x12\x1b\n" +
 	"\tfull_name\x18\x02 \x01(\tR\bfullName\x12\x10\n" +
@@ -728,9 +729,9 @@ const file_api_users_proto_rawDesc = "" +
 	"\x04page\x18\x01 \x01(\x05R\x04page\x12\x14\n" +
 	"\x05limit\x18\x02 \x01(\x05R\x05limit\"m\n" +
 	"\x13GetAllUsersResponse\x12V\n" +
-	"\x05users\x18\x01 \x03(\v2@.github.destunna.gogrpccrud.protobuf.api.service.GetUserResponseR\x05users\"#\n" +
-	"\x11DeleteUserRequest\x12\x0e\n" +
-	"\x02id\x18\x01 \x01(\tR\x02id\"\x14\n" +
+	"\x05users\x18\x01 \x03(\v2@.github.destunna.gogrpccrud.protobuf.api.service.GetUserResponseR\x05users\"9\n" +
+	"\x11DeleteUserRequest\x12$\n" +
+	"\x02id\x18\x01 \x01(\tB\x14\xbaH\x11\xc8\x01\x01r\f\x10\x012\b^[0-9]+$R\x02id\"\x14\n" +
 	"\x12DeleteUserResponseB\xcd\x02\n" +
 	"3com.github.destunna.gogrpccrud.protobuf.api.serviceB\n" +
 	"UsersProtoP\x01Z&github.com/destunna/gogrpccrud/pkg/api\xa2\x02\x06GDGPAS\xaa\x02/Github.Destunna.Gogrpccrud.Protobuf.Api.Service\xca\x02/Github\\Destunna\\Gogrpccrud\\Protobuf\\Api\\Service\xe2\x02;Github\\Destunna\\Gogrpccrud\\Protobuf\\Api\\Service\\GPBMetadata\xea\x024Github::Destunna::Gogrpccrud::Protobuf::Api::Serviceb\x06proto3"

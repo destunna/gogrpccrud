@@ -2,11 +2,24 @@ syntax = "proto3";
 
 package github.destunna.gogrpccrud.protobuf.api.service;
 
+import "buf/validate/validate.proto";
+
 message CreateUserRequest {
-  string full_name = 2;
-  string age = 3;
-  string phone_number = 4;
-  string habits = 5;      
+  string full_name = 2 [
+    (buf.validate.field).string.min_len = 3,
+    (buf.validate.field).string.max_len = 100
+  ];
+  string age = 3 [
+    (buf.validate.field).string.min_len = 1,
+    (buf.validate.field).string.max_len = 3,
+    (buf.validate.field).string.pattern = "^[0-9]+$"
+  ];
+  string phone_number = 4 [
+    (buf.validate.field).string.min_len = 7,
+    (buf.validate.field).string.max_len = 20,
+    (buf.validate.field).string.pattern = "^[0-9]+$"
+  ];
+  string habits = 5;
   bool alive = 6;
 }
 
@@ -21,10 +34,25 @@ message CreateUserResponse {
 }
 
 message UpdateUserRequest {
-  string id = 1;
-  string full_name = 2;
-  string age = 3;
-  string phone_number = 4;
+  string id = 1 [
+    (buf.validate.field).required = true,
+    (buf.validate.field).string.min_len = 1,
+    (buf.validate.field).string.pattern = "^[0-9]+$"
+  ];
+  string full_name = 2 [
+    (buf.validate.field).string.min_len = 3,
+    (buf.validate.field).string.max_len = 100
+  ];
+  string age = 3 [
+    (buf.validate.field).string.min_len = 1,
+    (buf.validate.field).string.max_len = 3,
+    (buf.validate.field).string.pattern = "^[0-9]+$"
+  ];
+  string phone_number = 4 [
+    (buf.validate.field).string.min_len = 7,
+    (buf.validate.field).string.max_len = 20,
+    (buf.validate.field).string.pattern = "^[0-9]+$"
+  ];
   string habits = 5;      
   bool alive = 6;
 }
@@ -40,7 +68,11 @@ message UpdateUserResponse {
 }
 
 message GetUserRequest {
-  string id = 1;
+  string id = 1 [
+    (buf.validate.field).required = true,
+    (buf.validate.field).string.min_len = 1,
+    (buf.validate.field).string.pattern = "^[0-9]+$"
+  ];
 }
 
 message GetUserResponse {
@@ -63,7 +95,11 @@ message GetAllUsersResponse {
 }
 
 message DeleteUserRequest {
-  string id = 1;
+  string id = 1 [
+    (buf.validate.field).required = true,
+    (buf.validate.field).string.min_len = 1,
+    (buf.validate.field).string.pattern = "^[0-9]+$"
+  ];
 }
 
 message DeleteUserResponse {}

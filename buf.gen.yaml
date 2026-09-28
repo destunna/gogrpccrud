@@ -5,7 +5,7 @@ managed:
     - file_option: go_package_prefix
       value: github.com/destunna/gogrpccrud/pkg
   disable:
-    - path: vendor.protobuf
+    - module: buf.build/bufbuild/protovalidate
 plugins:
   - local: protoc-gen-go
     out: pkg
