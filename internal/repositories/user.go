@@ -8,6 +8,7 @@ import (
 	"time"
 
 	"buf.build/go/protovalidate"
+	"google.golang.org/genproto/googleapis/rpc/errdetails"
 	"google.golang.org/grpc/codes"
 	"google.golang.org/grpc/status"
 )
@@ -25,7 +26,17 @@ func NewUserServise(db *sql.DB) *UserServise {
 
 func (s *UserServise) CreateUser(ctx context.Context, req *api.CreateUserRequest) (*api.CreateUserResponse, error) {
 	if err := protovalidate.Validate(req); err != nil {
-		return nil, status.Errorf(codes.InvalidArgument, "validation failed: %v", err)
+		st := status.New(codes.InvalidArgument, codes.InvalidArgument.String())
+		st, _ = st.WithDetails(&errdetails.BadRequest{
+			FieldViolations: []*errdetails.BadRequest_FieldViolation{
+				{
+					Field:       "request",
+					Description: err.Error(),
+				},
+			},
+		})
+
+		return nil, st.Err()
 	}
 
 	var id string
@@ -52,6 +63,20 @@ func (s *UserServise) CreateUser(ctx context.Context, req *api.CreateUserRequest
 }
 
 func (s *UserServise) UpdateUser(ctx context.Context, req *api.UpdateUserRequest) (*api.UpdateUserResponse, error) {
+	if err := protovalidate.Validate(req); err != nil {
+		st := status.New(codes.InvalidArgument, codes.InvalidArgument.String())
+		st, _ = st.WithDetails(&errdetails.BadRequest{
+			FieldViolations: []*errdetails.BadRequest_FieldViolation{
+				{
+					Field:       "request",
+					Description: err.Error(),
+				},
+			},
+		})
+
+		return nil, st.Err()
+	}
+
 	var user api.UpdateUserResponse
 
 	err := s.db.QueryRowContext(ctx, `
@@ -77,6 +102,20 @@ func (s *UserServise) UpdateUser(ctx context.Context, req *api.UpdateUserRequest
 }
 
 func (s *UserServise) GetUser(ctx context.Context, req *api.GetUserRequest) (*api.GetUserResponse, error) {
+	if err := protovalidate.Validate(req); err != nil {
+		st := status.New(codes.InvalidArgument, codes.InvalidArgument.String())
+		st, _ = st.WithDetails(&errdetails.BadRequest{
+			FieldViolations: []*errdetails.BadRequest_FieldViolation{
+				{
+					Field:       "request",
+					Description: err.Error(),
+				},
+			},
+		})
+
+		return nil, st.Err()
+	}
+
 	var user api.GetUserResponse
 
 	err := s.db.QueryRowContext(ctx, `
@@ -148,6 +187,20 @@ func (s *UserServise) GetAllUsers(ctx context.Context, req *api.GetAllUsersReque
 }
 
 func (s *UserServise) DeleteUser(ctx context.Context, req *api.DeleteUserRequest) (*api.DeleteUserResponse, error) {
+	if err := protovalidate.Validate(req); err != nil {
+		st := status.New(codes.InvalidArgument, codes.InvalidArgument.String())
+		st, _ = st.WithDetails(&errdetails.BadRequest{
+			FieldViolations: []*errdetails.BadRequest_FieldViolation{
+				{
+					Field:       "request",
+					Description: err.Error(),
+				},
+			},
+		})
+
+		return nil, st.Err()
+	}
+
 	var deletedID int
 
 	err := s.db.QueryRowContext(ctx, `
